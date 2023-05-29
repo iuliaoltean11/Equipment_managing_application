@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EmailAddress</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link th:href="cladiri.css" rel="stylesheet">
+  <link th:href="styles.css" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="navigation.html"></div>
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-8"><h2>Email <b>Tabel</b></h2></div>
+        <div class="col-sm-4">
+          <a href="/AddNewEmail" class="btn btn-info"><i class="fa fa-plus"></i> Add New</a>
+        </div>
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Adresa Email</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each = "email : ${ListaEmail}">
+        <td th:text = "${email.id}"></td>
+        <td th:text = "${email.adresaEmail}"></td>
+        <td>
+          <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons"></i></a>
+          <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons"></i></a>
+          <a class="delete" title="Delete" data-toggle="tooltip" th:href="${'/DeleteEmail/'+email.id}"><i class="material-icons"></i></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

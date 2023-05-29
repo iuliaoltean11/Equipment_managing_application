@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Echipament</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .rendered-form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .btn-default {
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    .btn-default:hover {
+      background-color: #0069d9;
+    }
+  </style>
+  <link th:href="styles.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="navigation.html"></div>
+<div class="container">
+  <form action="/EditEchipament" method="post" class="mx-auto">
+    <div class="rendered-form">
+      <div class="form-group field-id">
+        <label for="id">Id<span class="formbuilder-required">*</span></label>
+        <input type="text" class="form-control" name="id" id="id" th:value="${echipament.id}" readonly>
+      </div>
+      <div class="form-group field-numeEchipament">
+        <label for="numeEchipament">Nume<span class="formbuilder-required">*</span></label>
+        <input type="text" class="form-control" name="numeEchipament" id="numeEchipament" th:value="${echipament.numeEchipament}" required="required" aria-required="true">
+      </div>
+      <div class="form-group field-dataAdaugare">
+        <label for="dataAdaugare">Data Adaugare<span class="formbuilder-required">*</span></label>
+        <input type="date" class="form-control" name="dataAdaugare" id="dataAdaugare" th:value="${echipament.dataAdaugare}" required="required" aria-required="true">
+      </div>
+      <div class="form-group field-dataSchimbare">
+        <label for="dataSchimbare">Data Schimbare<span class="formbuilder-required">*</span></label>
+        <input type="date" class="form-control" name="dataSchimbare" id="dataSchimbare" th:value="${echipament.dataSchimbare}" required="required" aria-required="true">
+      </div>
+      <div class="form-group field-cladire">
+        <label for="cladire">Cladire<span class="formbuilder-required">*</span></label>
+        <select class="form-control" name="cladire" id="cladire" required="required" aria-required="true">
+          <!-- Loop through the list of cladiri and generate options -->
+          <option value="">Select Cladire</option>
+          <option th:each="cladire : ${cladiri}" th:value="${cladire.id}" th:text="${cladire.numeCladire}" th:selected="${cladire.id == echipament.cladire.id}"></option>
+        </select>
+      </div>
+      <div class="form-group field-amplasare">
+        <label for="amplasare">Etaj/Sala<span class="formbuilder-required">*</span></label>
+        <input type="text" class="form-control" name="amplasare" id="amplasare" th:value="${echipament.amplasare}" required="required" aria-required="true">
+      </div>
+      <div class="form-group field-adaugare">
+        <button type="submit" class="btn btn-default" name="adaugare">
+          <div>Save Changes</div>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>

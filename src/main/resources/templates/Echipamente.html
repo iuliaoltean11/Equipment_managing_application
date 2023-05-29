@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CLADIRI</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link th:href="@{cladiri.css}" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="navigation.html"></div>
+<div class="container">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-8"><h2>Echipamente <b>Tabel</b></h2></div>
+      </div>
+      <div class="row justify-content-between mt-5">
+        <div class="col-4">
+          <a href="/AddNewEchipament" class="btn btn-info"><i class="fa fa-plus"></i> Add New</a>
+        </div>
+        <div class="col-sm-4">
+          <form id="searchForm" class="form-inline" action="/Search" method="post">
+            <input id="keyword" name="keyword" type="text" class="form-control mr-sm-2" placeholder="Search">
+            <button id="searchBtn" class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nume Echipament</th>
+        <th>Data Adaugare</th>
+        <th>Data Schimbare</th>
+        <th>Nume Cladire</th>
+        <th>Etaj/Sala</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each = "echipament : ${ListaEchipamente}">
+        <td th:text = "${echipament.id}"></td>
+        <td th:text = "${echipament.numeEchipament}"></td>
+        <td th:text = "${echipament.dataAdaugare}"></td>
+        <td th:text = "${echipament.dataSchimbare}"></td>
+        <td th:text = "${echipament.cladire.numeCladire}"></td>
+        <td th:text = "${echipament.amplasare}"></td>
+        <td>
+          <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons"></i></a>
+          <a class="edit" title="Edit" data-toggle="tooltip" th:href="${'/EditEchipament/'+echipament.id}"><i class="material-icons"></i></a>
+          <a class="delete" title="Delete" data-toggle="tooltip" th:href="${'/DeleteEchipament/'+echipament.id}"><i class="material-icons"></i></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
